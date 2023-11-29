@@ -13,6 +13,12 @@ RUN npm install
 # 复制应用代码到工作目录
 COPY . .
 
+# 执行清理操作
+RUN npm cache clean --force \
+    && npm prune --production \
+    && rm -rf /tmp/* \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /root/.npm
 
 # 暴露应用运行的端口（如果有需要）
 EXPOSE 3000
