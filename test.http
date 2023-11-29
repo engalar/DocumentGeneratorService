@@ -1,0 +1,21 @@
+@baseURL = http://localhost:3000
+
+### Execute Cloud Service
+POST {{baseURL}}/executeCloudService
+Content-Type: application/json
+
+{
+  "requestId": "yourRequestId",
+  "securityToken": "yourSecurityToken",
+  "timezoneId": "yourTimezoneId",
+  "timeout": 5000,
+  "applicationUrl": "yourApplicationUrl",
+  "generatePath": "yourGeneratePath",
+  "resultPath": "yourResultPath",
+  "waitForResult": true,
+  "useScreenMediaType": true,
+  "waitForIdleNetwork": true,
+  "moduleVersion": "yourModuleVersion",
+  "runtimeVersion": "yourRuntimeVersion",
+  "projectId": "yourProjectId"
+}
