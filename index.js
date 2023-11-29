@@ -1,5 +1,8 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+import express from "express";
+import bodyParser from "body-parser";
+
+const enableMetrics = false,
+    chromePath = "google-chrome";
 
 // copy from service
 import formatSize from "pretty-bytes";
@@ -54,9 +57,7 @@ app.post("/executeCloudService", async (req, res) => {
     console.log("Project ID:", projectId);
 
     // params mapping
-    const appUrl = applicationUrl,
-        enableMetrics = false;
-
+    const appUrl = applicationUrl;
     // copy from service
     await withBrowser(async (browser) => {
         const documentGenerator = createDocumentGenerator(
