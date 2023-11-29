@@ -7,7 +7,7 @@ Content-Type: application/json
 {
   "requestId": "yourRequestId",
   "securityToken": "yourSecurityToken",
-  "timezoneId": "yourTimezoneId",
+  "timezone": "yourTimezoneId",
   "timeout": 5000,
   "applicationUrl": "yourApplicationUrl",
   "generatePath": "yourGeneratePath",
