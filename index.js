@@ -25,9 +25,10 @@ const port = 3000;
 app.use(bodyParser.json());
 
 app.post("/executeCloudService", async (req, res) => {
+    const securityToken = req.headers['x-security-token'];
+
     const {
         requestId,
-        securityToken,
         timezone,
         timeout,
         applicationUrl,
@@ -102,7 +103,7 @@ app.post("/executeCloudService", async (req, res) => {
         await moduleConnector.sendResult(resultUrl, document, securityToken);
     }).catch((error) => {
         logMessage(error.message, logLevel.error);
-        process.exit(1);
+        // process.exit(1);
     });
 
     async function withBrowser(fn) {
