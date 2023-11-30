@@ -5,14 +5,11 @@ FROM ghcr.io/puppeteer/puppeteer:21
 WORKDIR /app
 
 # 复制 package.json 和 package-lock.json（如果存在）
-COPY package*.json ./
+COPY package*.json index.js ./
 
+USER root
 # 安装应用依赖
 RUN npm install
-
-# 复制应用代码到工作目录
-COPY . .
-
 # 执行清理操作
 RUN npm cache clean --force \
     && npm prune --production \
@@ -20,8 +17,13 @@ RUN npm cache clean --force \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /root/.npm
 
+USER pptruser
+# 复制应用代码到工作目录
+COPY service ./service
+
+
 # 暴露应用运行的端口（如果有需要）
 EXPOSE 3000
 
 # 启动应用
-CMD [ "npm", "start" ]
+CMD [ "node", "index.js" ]
